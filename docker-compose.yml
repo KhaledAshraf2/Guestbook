@@ -1,0 +1,26 @@
+version: '2'
+services:
+  mongodb:
+    image: "mongo"
+    restart: always
+    volumes:
+            - ./data-node:/data/db
+    ports:
+     - "27017:27017"
+    command: mongod 
+  backend:
+    build: ./back-end/
+    ports:
+      - "3005:3005"
+    volumes:
+      - ./back-end:/usr/src/App
+    depends_on:
+      - mongodb
+  frontend:
+    build: ./front-end/
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front-end:/usr/src/App
+    depends_on:
+      - backend
