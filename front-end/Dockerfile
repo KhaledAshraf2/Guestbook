@@ -1,6 +1,13 @@
 FROM node:10.15.3
-RUN mkdir -p /usr/src/App
-WORKDIR /usr/src/App
+
+
+WORKDIR /app
+COPY package*.json /app/
+
+RUN npm install
+
+COPY . /app/
+
 
 EXPOSE 3000
 CMD [ "npm", "start" ]

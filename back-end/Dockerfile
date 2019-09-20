@@ -1,10 +1,12 @@
 FROM node:10.15.3
 
-RUN mkdir -p /usr/src/App
 
-WORKDIR /usr/src/App
+WORKDIR /app
+COPY package*.json /app/
 
-RUN npm install -g nodemon
+RUN npm install
+
+COPY . /app/
 
 EXPOSE 3005
 CMD [ "npm", "run","dev" ]
