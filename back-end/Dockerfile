@@ -1,12 +1,14 @@
 FROM node:10.15.3
 
+RUN mkdir -p /app/back-end
 
-WORKDIR /app
-COPY package*.json /app/
+WORKDIR /app/back-end
+
+COPY package.json /app/back-end
+COPY package-lock.json /app/back-end
 
 RUN npm install
 
-COPY . /app/
+COPY . /app/back-end
 
-EXPOSE 3005
-CMD [ "npm", "run","dev" ]
+CMD ["npm", "run", "dev"]
